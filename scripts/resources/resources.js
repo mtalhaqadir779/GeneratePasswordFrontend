@@ -1,1 +1,1 @@
-const amazonEc2PublicAddress = "http://54.164.159.198:3000";
+const amazonEc2PublicAddress = "https://54.164.159.198:3000";
