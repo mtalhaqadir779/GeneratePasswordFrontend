@@ -1,4 +1,5 @@
 const baseUrl = amazonEc2PublicAddress;
+const localBaseUrl = localHostAddress;
 
 const form = document.getElementById("password-form");
 const passwordLengthInput = document.getElementById("password-length");
@@ -6,8 +7,9 @@ const hasUpperCaseInput = document.getElementById("has-uppercase");
 const hasLowerCaseInput = document.getElementById("has-lowercase");
 const hasSpecialInput = document.getElementById("has-special");
 const hasNumberInput = document.getElementById("has-number");
-const passwordDisplay = document.getElementById("password-display");
+const passwordDisplay = document.getElementById("password-output");
 const checkboxes = document.querySelectorAll('input[type=checkbox]');
+
 
 function validateForm() {
     
@@ -42,10 +44,10 @@ form.addEventListener("submit", async (event) => {
       `length=${passwordLength}&hasUpperCase=${hasUpperCase}&hasLowerCase=${hasLowerCase}&hasSpecial=${hasSpecial}&hasNumber=${hasNumber}`
     );
     const response = await fetch(
-      `${baseUrl}/generate-password?length=${passwordLength}&hasUpperCase=${hasUpperCase}&hasLowerCase=${hasLowerCase}&hasSpecial=${hasSpecial}&hasNumber=${hasNumber}`
+      `${localBaseUrl}/generate-password?length=${passwordLength}&hasUpperCase=${hasUpperCase}&hasLowerCase=${hasLowerCase}&hasSpecial=${hasSpecial}&hasNumber=${hasNumber}`
     );
     const password = await response.text();
-    passwordDisplay.textContent = password;
+    passwordDisplay.value = password;
   } catch (err) {
     console.error(err);
     passwordDisplay.textContent = "An error occurred, please try again.";
